@@ -1,0 +1,12 @@
+# Ignore
+.git
+.dockerignore
+.gitignore
+.env_vars
+Dockerfile
+Makefile
+
+# Don't ignore
+!LICENSE
+!README.md
+!VERSION
