@@ -1,5 +1,6 @@
 # Ignore
 .git
+shellscripts
 .dockerignore
 .gitignore
 .env_vars
@@ -7,6 +8,7 @@ Dockerfile
 Makefile
 
 # Don't ignore
+!shellscripts/parse_variables.sh
 !LICENSE
 !README.md
 !VERSION
