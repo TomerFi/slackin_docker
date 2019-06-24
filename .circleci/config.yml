@@ -106,7 +106,7 @@ commands:
           command: |
             python -m venv venv
             . venv/bin/activate
-            pip install -q -c requirements.txt
+            pip install -q -r requirements.txt
       - save_cache:
           key: v1-slackin-docker-python-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements.txt" }}
           paths:
