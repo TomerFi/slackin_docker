@@ -48,7 +48,6 @@ metadataTest:
       value: "."
       isRegex: true
   exposedPorts: ["8000"]
-  entrypoint: []
   # yamllint disable-line rule:line-length
   cmd: ["/bin/sh", "-c", "/slackin/slackin-src/bin/slackin --hostname '0.0.0.0' --port '8000' --channels $SLACK_CHANNELS $SLACK_SUBDOMAIN $SLACK_API_TOKEN $GOOGLE_CAPTCHA_SECRET $GOOGLE_CAPTCHA_SITEKEY"]
   workdir: "/slackin"
