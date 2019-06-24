@@ -1,0 +1,54 @@
+schemaVersion: "2.0.0"
+
+fileExistenceTests:
+  - name: "LICENSE shouldExist: true"
+    path: /slackin/LICENSE
+    shouldExist: true
+
+fileContentTests:
+  - name: "LICENSE is MIT"
+    path: /slackin/LICENSE
+    expectedContents: ["MIT License.*"]
+
+metadataTest:
+  labels:
+    - key: "org.label-schema.build-date"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.name"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.description"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.url"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.vcs-url"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.vcs-ref"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.version"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.schema-version"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.docker.cmd"
+      value: "."
+      isRegex: true
+    - key: "org.label-schema.docker.params"
+      value: "."
+      isRegex: true
+    - key: "license"
+      value: "MIT"
+    - key: "maintainer"
+      value: "."
+      isRegex: true
+  exposedPorts: ["8000"]
+  entrypoint: []
+  # yamllint disable-line rule:line-length
+  cmd: ["/bin/sh", "-c", "/slackin/slackin-src/bin/slackin --hostname '0.0.0.0' --port '8000' --channels $SLACK_CHANNELS $SLACK_SUBDOMAIN $SLACK_API_TOKEN $GOOGLE_CAPTCHA_SECRET $GOOGLE_CAPTCHA_SITEKEY"]
+  workdir: "/slackin"
