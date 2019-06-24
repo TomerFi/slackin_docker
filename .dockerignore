@@ -1,14 +1,27 @@
 # Ignore
+.circleci
 .git
+.github
+.tox
+node_modules
 shellscripts
-.dockerignore
-.gitignore
 .env_vars
+.gitignore
+.remarkrc
+.spelling
+.yamllint
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+container_structure.yml
+CONTRIBUTING.md
 Dockerfile
 Makefile
+package-lock.json
+package.json
+requirements.txt
+tox.ini
 
 # Don't ignore
-!shellscripts/parse_variables.sh
 !LICENSE
 !README.md
 !VERSION
