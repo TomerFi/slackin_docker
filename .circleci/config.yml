@@ -1,0 +1,285 @@
+# yamllint disable rule:line-length
+
+version: 2.1
+
+#####################
+####### Orbs ########
+#####################
+orbs:
+  # Currently, docker orb is used to build the docker image and not publish it,
+  # Therefore the user and password environment variables does not need to be set.
+  docker-orb: circleci/docker@0.5.1
+
+#####################
+##### Executors #####
+#####################
+executors:
+  # Used for running one-time docker images.
+  # Currnet image (201808-01) runs docker 18.06.0-ce and docker-compose 1.22.0.
+  # https://circleci.com/docs/2.0/configuration-reference/#available-machine-images
+  machine-docker:
+    machine:
+      image: "circleci/classic:201808-01"
+    working_directory: ~/workspace
+
+  # Used for executing npm modules.
+  node-docker:
+    docker:
+      - image: "circleci/node:lts"
+    working_directory: ~/workspace
+
+  # Used for starting python programs.
+  python-docker:
+    docker:
+      - image: "circleci/python:3.7.3-stretch"
+    working_directory: ~/workspace
+
+#####################
+##### Commands ######
+#####################
+commands:
+  ##################################################################
+  ### Commands for creating environments and save/restore caches ###
+  ##################################################################
+
+  # Docker images are pulled here and saved to cache.
+  # Various tools can be saved to cache here.
+  # Use with the machine-docker executer as preparation before running one-time docker containers.
+  prepare-machine:
+    description: Prepare the virtual machine
+    steps:
+      - restore_cache:
+          keys:
+            - v1-slackin-docker-machine-{{ .Branch }}-{{ checksum "Dockerfile" }}-{{ checksum ".dockerignore" }}
+      - run:
+          name: Install container-structure-test
+          command: |
+            if [[ ! -f "./google-container-tools/container-structure-test" ]]
+            then
+              mkdir -p ./google-container-tools
+              curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
+              chmod +x container-structure-test-linux-amd64
+              mv container-structure-test-linux-amd64 ./google-container-tools/container-structure-test
+            fi
+      - run:
+          name: Download docker images
+          command: |
+            filename=docker-cache/saved_images.tar
+            if [[ -f "$filename" ]]; then docker load < "$filename"; fi
+            mkdir -p docker-cache
+            docker pull hadolint/hadolint:v1.16.3
+            docker pull koalaman/shellcheck:v0.6.0
+            docker save -o "$filename" hadolint/hadolint:v1.16.3 koalaman/shellcheck:v0.6.0
+
+      - save_cache:
+          key: v1-slackin-docker-machine-{{ .Branch }}-{{ checksum "Dockerfile" }}-{{ checksum ".dockerignore" }}
+          paths:
+            - docker-cache
+            - ./google-container-tools
+
+  # Node packages are installed here and then saved to cache.
+  # Use with the node-docker executer as preparation before executing npm modules.
+  prepare-node:
+    description: Prepare node environment
+    steps:
+      - restore_cache:
+          keys:
+            - v1-slackin-docker-node-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install npm packages
+          command: npm install
+      - save_cache:
+          key: v1-slackin-docker-node-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+
+  # Pypi packages are installed here into a venv that is saved to cache.
+  # Use with the python-docker executer as preparaton before starting python programs.
+  prepare-python:
+    description: Prepare python's virtual environment
+    steps:
+      - restore_cache:
+          keys:
+            - v1-slackin-docker-python-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Create the venv, install all requirements and save to cache
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -q -r requirements.txt
+      - save_cache:
+          key: v1-slackin-docker-python-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements.txt" }}
+          paths:
+            - ./venv
+
+  ######################################################################################################
+  ### Commands running inside the machine-docker executer after running  the prepare-machine command ###
+  ######################################################################################################
+  dockerfile-lint:
+    description: Run one-time container for hadolint linter against Dockerfile
+    steps:
+      - run:
+          name: Run hadolint docker
+          command: bash shellscripts/run-once-docker-operations.sh lint-dockerfile
+
+  shellscripts-check:
+    description: Run one-time container for shellcheck linter against shellscripts/*.sh
+    steps:
+      - run:
+          name: Run shellcheck docker
+          command: bash shellscripts/run-once-docker-operations.sh check-shellscripts
+
+  run-container-structure-test:
+    description: Run the GoogleContainerTools/container-structure-test tool
+    steps:
+      - run:
+          name: Run container-structure-test
+          command: ./google-container-tools/container-structure-test test --force --config container_structure.yml --verbosity debug --image tomerfi/switcher_webapi:testing
+
+  ######################################################################################################
+  ###### Commands running inside the node-docker executer after running the prepare-node command #######
+  ######################################################################################################
+  pkg-validate:
+    description: Run npm's package-json-validate for validating the package.json file
+    steps:
+      - run:
+          name: Pjv - package.json
+          command: npm run validate-pkg
+
+  md-lint:
+    description: Run npm's remark and remark-lint plugins against md files
+    steps:
+      - run:
+          name: Remark - md lint
+          command: npm run lint-md
+
+  md-spell:
+    description: Run npm's markdown-spellcheck against md files
+    steps:
+      - run:
+          name: Markdown Spellcheck
+          command: npm run spell-md-report
+
+  ######################################################################################################
+  #### Commands running inside the python-docker executer after running the prepare-python command #####
+  ######################################################################################################
+  yml-lint:
+    description: Run pypi yamllint against yml files
+    steps:
+      - run:
+          name: Yamllint
+          command: |
+            . venv/bin/activate
+            yamllint --config-file .yamllint --format colored --strict .
+
+#####################
+####### Jobs ########
+#####################
+jobs:
+  #############################################
+  ### Jobs for the docs-lint-build workflow ###
+  #############################################
+  md-lint-job:
+    executor:
+      name: node-docker
+    steps:
+      - checkout
+      - prepare-node
+      - md-lint
+
+  md-spell-job:
+    executor:
+      name: node-docker
+    steps:
+      - checkout
+      - prepare-node
+      - md-spell
+
+  ###############################################
+  ### Jobs for the docker-build-test workflow ###
+  ###############################################
+  dockerfile-lint-job:
+    executor:
+      name: machine-docker
+    steps:
+      - checkout
+      - prepare-machine
+      - dockerfile-lint
+
+  docker-build-test-structure-job:
+    executor:
+      name: machine-docker
+    steps:
+      - checkout
+      - prepare-machine
+      - docker-orb/build:
+          dockerfile: Dockerfile
+          path: .
+          image: tomerfi/switcher_webapi
+          tag: testing
+          extra_build_args: '--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=testref --build-arg VERSION=testing'
+      - run-container-structure-test
+
+  #############################################
+  ### Jobs for the code-lint-test workflow ####
+  #############################################
+  pkg-validate-job:
+    executor:
+      name: node-docker
+    steps:
+      - checkout
+      - prepare-node
+      - pkg-validate
+
+  yml-lint-job:
+    executor:
+      name: python-docker
+    steps:
+      - checkout
+      - prepare-python
+      - yml-lint
+
+  shellscripts-check-job:
+    executor:
+      name: machine-docker
+    steps:
+      - checkout
+      - prepare-machine
+      - shellscripts-check
+
+#####################
+##### Workslows #####
+#####################
+workflows:
+  version: "2"
+
+  # Lint and build the documantation files
+  docs-lint-build:
+    jobs:
+      - md-lint-job
+
+      - md-spell-job:
+          requires:
+            - md-lint-job
+
+  # Build and test the docker images
+  docker-build-test:
+    jobs:
+      - dockerfile-lint-job
+
+      - docker-build-test-structure-job:
+          requires:
+            - dockerfile-lint-job
+
+  # Lint and the test the code and scripts
+  code-lint-test:
+    jobs:
+      - pkg-validate-job
+
+      - yml-lint-job:
+          requires:
+            - pkg-validate-job
+
+      - shellscripts-check-job:
+          requires:
+            - yml-lint-job
