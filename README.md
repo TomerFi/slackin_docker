@@ -63,9 +63,9 @@ docker run -d -p 8000:8000 \
 
 That's it, Have Fun! :smile:
 
-**Contributors** (:thumbsup:), please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/TomerFi)
+
+**Contributors** (:thumbsup:), please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 <!-- Real Links -->
 [0]: https://github.com/TomerFi/slackin_docker
