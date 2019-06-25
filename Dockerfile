@@ -21,7 +21,7 @@ docker run -d -p 8000:8000 \
 -e SLACK_CHANNELS=my_channel \
 -e GOOGLE_CAPTCHA_SECRET=1AdumMySECRETADUMMysecReta2DUmmYsECR3etA \
 -e GOOGLE_CAPTCHA_SITEKEY=1AdummySITEKEY23ADUMM4ysi5keAaDuMMy6si78 \
---name slackin_server tomerfi/slackin_docker" \
+--name slackin_server tomerfi/slackin_docker:latest" \
 org.label-schema.docker.params="\
 SLACK_SUBDOMAIN=Your Slack's subdomain | \
 SLACK_API_TOKEN=Your slack API token | \
