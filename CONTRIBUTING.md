@@ -16,21 +16,28 @@ Please feel free to contribute, even to this contributing guideline file, if you
     -   [Shell](#shell)
     -   [Ignore files](#ignore-files)
     -   [Package management](#package-management)
+
 -   [Continuous Integration](#continuous-integration)
     -   [CircleCi](#circleci)
     -   [Requires-io](#requires-io)
     -   [David-DM](#david-dm)
     -   [Snyk](#snyk)
+
 -   [Continuous Deployment](#continuous-deployment)
     -   [Docker Hub](#docker-hub)
     -   [Metadata](#metadata)
+
 -   [Environments and Tools](#environments-and-tools)
+
 -   [Testing](#testing)
+
 -   [Guidelines](#guidelines)
     -   [NPM Scripts](#npm-scripts)
     -   [Shell Scripts](#shell-scripts)
     -   [Makefile](#makefile)
+
 -   [Chat](#chat)
+
 -   [Code of Conduct](#code-of-conduct)
 
 ## Items description
@@ -54,7 +61,8 @@ Please feel free to contribute, even to this contributing guideline file, if you
 
 -   `requirements.txt` is a list of python requirements needed for [Tox](https://tox.readthedocs.io/en/latest/) testing.
 
--   `tox.ini` is the configuration file for [Tox Testing Automation](https://tox.readthedocs.io/en/latest/) automating tests.
+-   `tox.ini` is the configuration file for [Tox Testing Automation](https://tox.readthedocs.io/en/latest/)
+    automating tests.
 
 ### Docker
 -   `Dockerfile` is the instruction file for building the *docker image*.
