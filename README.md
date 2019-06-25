@@ -1,28 +1,24 @@
 <!--lint disable maximum-heading-length-->
-# Slackin Docker</br>[![shields-io-maintenance]][0] [![self-hosted-slack-channel]][1]
+# Slackin Docker</br>[![microbadger-docker-version]][7] [![microbadger-docker-license]][8] [![shields-io-docker-pulls]][9]</br>[![shields-io-maintenance]][0] [![self-hosted-slack-channel]][1]
+
+> Docker image for hosting [rauchg's solution](https://github.com/rauchg/slackin) for slack channel
+> badge.
 
 | Stage     | Badges                                                                 |
 | --------- | ---------------------------------------------------------------------- |
-| `Builds`  | [![circleci]][2]                                                       |
+| `Builds`  | [![circleci]][2] [![shields-io-docker-cloud-build-status]][10]         |
 | `Pypi`    | [![requires-io]][3] [![snyk-python]][5]                                |
 | `Npm`     | [![david-dm-dev-package-json-dependencies-status]][4] [![snyk-npm]][6] |
 
-Docker image for hosting [rauchg's solution](https://github.com/rauchg/slackin) for slack channel
-badge.
-
 ## Who, What and Why
-
-**Who**
-
+### Who
 You, if you use a [Slack](https://slack.com) workspace to coordinate with your team.
 
-**What**
+### What
+A badge (like the one above - below the heading :point_up:) that demonstrates `online/connected`
+team mates in a [Slack](https://slack.com) channel.
 
-A badge (like the one above - below the heading) that demonstrates `online/connected` team mates
-in a [Slack](https://slack.com) channel.
-
-**Why**
-
+### Why
 It can used as a landing page or redirect to the channel itself. Your team mates can quickly jump
 into the correct channel directly from the code repository.
 
@@ -32,10 +28,10 @@ And if nothing else... It's another shining badge for your repository. :sunglass
 -   Generate a [Slack Legacy Token](https://api.slack.com/custom-integrations/legacy-tokens).
     This will allow us to query slack.
 
--   Genetate a site key and a private key from the admin console in [Google reCAPTCHA](https://www.google.com/recaptcha/intro/v3.html).
+-   Generate a site key and a private key from the admin console in [Google reCAPTCHA](https://www.google.com/recaptcha/intro/v3.html).
     This will allow us to prevent abuse to our new page.
 
--   Unless you plan on working localy only, which you probably aren't,
+-   Unless you plan on working locally only, which you probably aren't,
     You'll need to select and open a designated port on your router.
     It will probably be wise to get a proper dns name for your server
     and not rely on your public ip address.
@@ -51,7 +47,7 @@ GOOGLE_CAPTCHA_SECRET=Goggle reCAPTCHA secret key
 GOOGLE_CAPTCHA_SITEKEY=Goggle reCAPTCHA site key
 ```
 
-Simple `docker run` command, replacing the `8000` port (the left one) with your selecting port,
+Simple `docker run` command, replacing the `8000` port (the left one) with your selected port,
 Of course updating the environment variables with the "not-dummy" information:
 
 ```shell
@@ -66,22 +62,32 @@ docker run -d -p 8000:8000 \
 
 That's it, Have Fun! :smile:
 
+**Contributors** (:thumbsup:), please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/TomerFi)
 
 <!-- Real Links -->
-[0]: https://github.com/TomerFi/switcher_webapi
+[0]: https://github.com/TomerFi/slackin_docker
 [1]: https://tomfi.slack.com/messages/CKBC77Q5B
 [2]: https://circleci.com/gh/TomerFi/slackin_docker
 [3]: https://requires.io/github/TomerFi/slackin_docker/requirements
 [4]: https://david-dm.org/TomerFi/slackin_docker
-[5]: https://snyk.io//test/github/TomerFi/slackin_docker?targetFile=requirements.txt
-[6]: https://snyk.io//test/github/TomerFi/slackin_docker?targetFile=package.json
+[5]: https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=requirements.txt
+[6]: https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=package.json
+[7]: https://microbadger.com/images/tomerfi/slackin_docker
+[8]: https://github.com/TomerFi/slackin_docker/blob/dev/LICENSE
+[9]: https://hub.docker.com/r/tomerfi/slackin_docker
+[10]: https://hub.docker.com/r/tomerfi/switcher_webapi/builds
 
 <!-- Badges Links -->
 [circleci]: https://circleci.com/gh/TomerFi/slackin_docker.svg?style=shield
 [david-dm-dev-package-json-dependencies-status]: https://david-dm.org/TomerFi/slackin_docker/status.svg
 [requires-io]: https://requires.io/github/TomerFi/slackin_docker/requirements.svg
+[microbadger-docker-license]: https://images.microbadger.com/badges/license/tomerfi/slackin_docker.svg
+[microbadger-docker-version]: https://images.microbadger.com/badges/version/tomerfi/slackin_docker.svg
 [self-hosted-slack-channel]: https://slack.tomfi.info:8443/slackin_docker.svg
+[shields-io-docker-cloud-build-status]: https://img.shields.io/docker/cloud/build/tomerfi/slackin_docker.svg
+[shields-io-docker-pulls]: https://img.shields.io/docker/pulls/tomerfi/slackin_docker.svg
 [shields-io-maintenance]: https://img.shields.io/badge/Maintained%3F-yes-green.svg
 [snyk-npm]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=package.json
 [snyk-python]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=requirements.txt
