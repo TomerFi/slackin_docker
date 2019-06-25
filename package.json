@@ -1,9 +1,10 @@
 {
   "name": "slackin_docker",
   "version": "0.5.1",
-  "description": "Docker image for self-hosting rauchg's solution for slack badge.",
+  "description": "Docker image for hosting rauchg's solution for slack channel badge.",
   "keywords": [
     "slack",
+    "slackin",
     "badge",
     "docker"
   ],
