@@ -1,6 +1,6 @@
 # Contributing to `slackin_docker`
 
-First off, thank you for taking the time to contribute. :clap:
+:clap: First off, thank you for taking the time to contribute. :clap:
 
 Contributing is pretty straight-forward:
 -   Fork the repository
@@ -16,28 +16,21 @@ Please feel free to contribute, even to this contributing guideline file, if you
     -   [Shell](#shell)
     -   [Ignore files](#ignore-files)
     -   [Package management](#package-management)
-
 -   [Continuous Integration](#continuous-integration)
     -   [CircleCi](#circleci)
     -   [Requires-io](#requires-io)
     -   [David-DM](#david-dm)
     -   [Snyk](#snyk)
-
 -   [Continuous Deployment](#continuous-deployment)
     -   [Docker Hub](#docker-hub)
     -   [Metadata](#metadata)
-
 -   [Environments and Tools](#environments-and-tools)
-
 -   [Testing](#testing)
-
 -   [Guidelines](#guidelines)
     -   [NPM Scripts](#npm-scripts)
     -   [Shell Scripts](#shell-scripts)
     -   [Makefile](#makefile)
-
 -   [Chat](#chat)
-
 -   [Code of Conduct](#code-of-conduct)
 
 ## Items description
@@ -59,10 +52,9 @@ Please feel free to contribute, even to this contributing guideline file, if you
 -   `.spelling` is the dictionary file used by [markdown-spellcheck](https://www.npmjs.com/package/markdown-spellcheck).
     Case-insensitive words in this file will not raise a spelling mistake error.
 
--   `requirements.txt` is a list of python requirements needed for tox testing.
+-   `requirements.txt` is a list of python requirements needed for [Tox](https://tox.readthedocs.io/en/latest/) testing.
 
--   `tox.ini` is the configuration file for [Tox Testing Automation](https://tox.readthedocs.io/en/latest/)
-    testing the python code.
+-   `tox.ini` is the configuration file for [Tox Testing Automation](https://tox.readthedocs.io/en/latest/) automating tests.
 
 ### Docker
 -   `Dockerfile` is the instruction file for building the *docker image*.
@@ -99,20 +91,21 @@ the npm requirements listed in the *package.json* file.
 ### Snyk
 [Snyk](https://snyk.io) is keeping an eye out for vulnerabilities in our
 [npm dependencies](https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=package.json),
-our [pypi dependencies](https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=requirements.txt)
+our [pypi requirements](https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=requirements.txt)
 and our **docker image dependencies**.
 
 ## Continuous Deployment
 ### Docker Hub
-When a **git-tag** with the regex of `/^[0-9.]+$/` is set, [Docker Hub Cloud](https://hub.docker.com/r/tomerfi/slackin_docker/builds)
-will build the image based on the Dockerfile instructions file and tag it twice:
+By hook configuration, when a **git-tag** with the regex of `/^[0-9.]+$/` is set,
+[Docker Hub Cloud](https://hub.docker.com/r/tomerfi/slackin_docker/builds) will build the image
+based on the Dockerfile instructions file and tag it twice:
 -   `<git-tag>`
 -   latest
 
 ### Metadata
 By hook configuration, for every *docker image* build by [Docker Hub](https://hub.docker.com/r/tomerfi/slackin_docker)
 [MicroBadger](https://microbadger.com/images/tomerfi/slackin_docker)
-will receive a notification and publish the image metadata.
+will receive a notification and will publish the image metadata.
 
 ## Environments and Tools
 -   Python's [virtualenv](https://pypi.org/project/virtualenv/), a tool for segregating Python
@@ -125,7 +118,7 @@ will receive a notification and publish the image metadata.
     `tox`.
 
 -   [Docker](https://www.docker.com/), as some of the testing automation are
-    performed within a run-once docker container.
+    performed within a run-once docker containers.
 
 -   [Tox](https://tox.readthedocs.io/en/latest/) for automating unit testing in your
     local environment.
@@ -140,15 +133,12 @@ will receive a notification and publish the image metadata.
         that you also run `tox --help` to get familiar with the various options such as
         `-e` and `-r` that will help you perform faster and better tests.)
 
-> **Please note**: the rest of the steps require no installation on your behalf,
-> but knowing them is important seeing they are key elements for testing with `Tox` and/or `CircleCi`.
-
 -   *NPM Package*: [package-json-validator](https://www.npmjs.com/package/package-json-validator)
     for validating the [package.json](package.json) file.
 
 -   *NPM Package*: [remark-lint](https://www.npmjs.com/package/remark-lint) which is a plugin for
     [remark](https://www.npmjs.com/package/remark) and the [remark-cli](https://www.npmjs.com/package/remark-cli)
-    command line tool for linting markdown files residing at the `base path` and in `.github`.
+    command line tool for linting *markdown* files.
     -   [remark-lint](https://www.npmjs.com/package/remark-lint) uses a couple of presets and tools,
         all can be found under the dependencies key in [package.json](package.json).
 
@@ -159,12 +149,11 @@ will receive a notification and publish the image metadata.
     -   [markdown-spellcheck](https://www.npmjs.com/package/markdown-spellcheck) dictionary file
         is [.spelling](.spelling).
 
--   *Python Package*: [yamllint](https://pypi.org/project/yamllint/) for linting the project yml
-    files.
+-   *Python Package*: [yamllint](https://pypi.org/project/yamllint/) for linting yml files.
     -   [yamllint](https://pypi.org/project/yamllint/) is configured with [.yamllint](.yamllint.yml).
 
 -   *Docker Image*: [koalaman/shellcheck](https://hub.docker.com/r/koalaman/shellcheck) is used
-    for checking shell script residing in [shellscripts](shellscripts/).
+    for checking the [shellscripts](shellscripts).
 
 -   *Docker Image*: [hadolint/hadolint](https://hub.docker.com/r/hadolint/hadolint) is used for
     linting the instruction file [Dockerfile](Dockerfile).
@@ -191,10 +180,7 @@ Use `tox` for automated local tests.
 > for packaging handling.
 
 Here are some guidelines (recommendations) for contributing to the `slackin_docker` project:
--   If you add a python dependency, for order keeping and for [Snyk](https://snyk.io)'s sake,
-    Please add the dependency with the fixed version to [requirements.txt](requirements.txt).
-
--   If you add a new file, please consider is it should be listed within any or all of
+-   If you add a new file, please consider if it should be listed within any or all of
     the [ignore files](#ignore-files).
 
 -   If you change something inside the `docker image` it is strongly recommended trying to verify
@@ -212,9 +198,9 @@ Here are some guidelines (recommendations) for contributing to the `slackin_dock
         file [.spelling](.spelling).
 
 ### NPM Scripts
-Before using the scrips, you need to install the dependencies.
+Before using the scrips, you need to install the dependencies,
+From the [package.json](package.json) file path, run `npm install`.
 
-From the [package.json](package.json) file path, run `npm install`,
 Then you can execute the scripts from the same path.
 -   `npm run lint-md` will run [remark](https://remark.js.org/) against *markdown* files.
 
@@ -229,18 +215,18 @@ Then you can execute the scripts from the same path.
 
 ### Shell Scripts
 The shell scripts in `shellscripts` were written for `bash` and not for `sh`.
--   `bash shellscripts/container-structure-test-verify.sh` will verify the existence of
+-   `shellscripts/container-structure-test-verify.sh` will verify the existence of
     [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test)
     and execute it. The script will `exit 0` if the tool doesn't exists so it will not fail `tox`.
 
--   `bash shellscripts/push-docker-description.sh` allows the deployment of the local
+-   `shellscripts/push-docker-description.sh` allows the deployment of the local
     [README.md](README.md) file as a docker image description in
     [Docker Hub](https://cloud.docker.com/repository/docker/tomerfi/slackin_docker).
     Please use it with [Makefile](#makefile) as arguments are required
 
--   `bash shellscripts/run-once-docker-operations.sh <add-argument-here>` will verify the
+-   `shellscripts/run-once-docker-operations.sh <add-argument-here>` will verify the
     existence of [Docker](https://www.docker.com/) before executing various run-once docker
-    operations based on the following arguments, if the script find that
+    operations based on the following arguments, if the script finds that
     [Docker](https://www.docker.com/) is not installed, it will `exit 0` so it will not fail `tox`:
     -   argument `lint-dockerfile` will execute the docker image
         [hadolint/hadolint](https://hub.docker.com/r/hadolint/hadolint) linting the local
@@ -299,7 +285,7 @@ especially in regards to docker operations, try `make help` to list all the avai
 ## Chat
 Feel free to join the project's public
 [Slack Channel](https://tomfi.slack.com/messages/CKBC77Q5B)</br>
-GitHub is integrated with the channel and will keep its members updated.
+GitHub is integrated with this channel and will keep its members updated.
 
 ## Code of Conduct
 The code of conduct can be found [here](CODE_OF_CONDUCT.md).

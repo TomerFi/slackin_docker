@@ -19,21 +19,22 @@ A badge (like the one above - below the heading :point_up:) that demonstrates `o
 team mates in a [Slack](https://slack.com) channel.
 
 ### Why
-It can used as a landing page or redirect to the channel itself. Your team mates can quickly jump
+It can be used as a landing page or redirect to the channel itself. Your team mates can quickly jump
 into the correct channel directly from the code repository.
 
 And if nothing else... It's another shining badge for your repository. :sunglasses:
 
 ## Pre-requirements
 -   Generate a [Slack Legacy Token](https://api.slack.com/custom-integrations/legacy-tokens).
-    This will allow us to query slack.
+    This will allow you to query slack.
 
 -   Generate a site key and a private key from the admin console in [Google reCAPTCHA](https://www.google.com/recaptcha/intro/v3.html).
-    This will allow us to prevent abuse to our new page.
+    This will allow you to prevent abuse to your new page.
 
--   Unless you plan on working locally only, which you probably aren't,
+-   Unless you plan on working locally only, which you probably aren't.
     You'll need to select and open a designated port on your router.
-    It will probably be wise to get a proper dns name for your server
+    
+    Also, It will probably be wise to get a proper dns name for your server
     and not rely on your public ip address.
 
 ## Run
