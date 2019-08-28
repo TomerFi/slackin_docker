@@ -64,7 +64,7 @@ docker run -d -p 8000:8000 \
 
 That's it, Have Fun! :smile:
 
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/TomerFi)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/TomerFi) [![Greenkeeper badge](https://badges.greenkeeper.io/TomerFi/slackin_docker.svg)](https://greenkeeper.io/)
 
 **Contributors** (:thumbsup:), please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
