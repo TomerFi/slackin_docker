@@ -1,5 +1,5 @@
 <!--lint disable maximum-heading-length-->
-![tomfi-repo-logo](https://raw.githubusercontent.com/tomerfi/portfolio/gh-pages/images/TomFiRepoWhite.png)
+![tomfi-repo-logo](https://media.githubusercontent.com/media/TomerFi/portfolio/gh-pages/images/TomFiRepoWhite.png)
 # Slackin Docker</br>[![microbadger-docker-version]][7] [![microbadger-docker-license]][8] [![shields-io-docker-pulls]][9]</br>[![shields-io-maintenance]][0] [![self-hosted-slack-channel]][1]
 
 > Docker image for hosting [rauchg's solution](https://github.com/rauchg/slackin) for slack channel
