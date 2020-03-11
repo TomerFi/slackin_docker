@@ -1,6 +1,5 @@
 <!--lint disable maximum-heading-length-->
-![tomfi-repo-logo](https://media.githubusercontent.com/media/TomerFi/portfolio/gh-pages/images/TomFiRepoWhite.png)
-# Slackin Docker</br>[![microbadger-docker-version]][7] [![microbadger-docker-license]][8] [![shields-io-docker-pulls]][9]</br>[![shields-io-maintenance]][0] [![self-hosted-slack-channel]][1]
+# Slackin Docker</br>[![microbadger-docker-version]][7] [![microbadger-docker-license]][8] [![shields-io-docker-pulls]][9]</br>[![shields-io-maintenance]][0]
 
 > Docker image for hosting [rauchg's solution](https://github.com/rauchg/slackin) for slack channel
 > badge.
@@ -76,7 +75,6 @@ That's it, Have Fun! :smile:
 
 <!-- Real Links -->
 [0]: https://github.com/TomerFi/slackin_docker
-[1]: https://tomfi.slack.com/messages/CKBC77Q5B
 [2]: https://circleci.com/gh/TomerFi/slackin_docker
 [3]: https://requires.io/github/TomerFi/slackin_docker/requirements
 [4]: https://david-dm.org/TomerFi/slackin_docker
@@ -95,7 +93,6 @@ That's it, Have Fun! :smile:
 [requires-io]: https://requires.io/github/TomerFi/slackin_docker/requirements.svg
 [microbadger-docker-license]: https://images.microbadger.com/badges/license/tomerfi/slackin_docker.svg
 [microbadger-docker-version]: https://images.microbadger.com/badges/version/tomerfi/slackin_docker.svg
-[self-hosted-slack-channel]: https://slack.tomfi.info:8443/slackin_docker.svg
 [shields-io-docker-cloud-build-status]: https://img.shields.io/docker/cloud/build/tomerfi/slackin_docker.svg
 [shields-io-docker-pulls]: https://img.shields.io/docker/pulls/tomerfi/slackin_docker.svg
 [shields-io-maintenance]: https://img.shields.io/badge/Maintained%3F-yes-green.svg
