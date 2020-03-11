@@ -95,6 +95,6 @@ That's it, Have Fun! :smile:
 [microbadger-docker-version]: https://images.microbadger.com/badges/version/tomerfi/slackin_docker.svg
 [shields-io-docker-cloud-build-status]: https://img.shields.io/docker/cloud/build/tomerfi/slackin_docker.svg
 [shields-io-docker-pulls]: https://img.shields.io/docker/pulls/tomerfi/slackin_docker.svg
-[shields-io-maintenance]: https://img.shields.io/badge/Maintained%3F-yes-green.svg
+[shields-io-maintenance]: https://img.shields.io/maintenance/no/2020
 [snyk-npm]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=package.json
 [snyk-python]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=requirements.txt
