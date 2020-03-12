@@ -4,12 +4,6 @@
 > Docker image for hosting [rauchg's solution](https://github.com/rauchg/slackin) for slack channel
 > badge.
 
-| Stage     | Badges                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------- |
-| `Builds`  | [![circleci]][2] [![shields-io-docker-cloud-build-status]][10]                                    |
-| `Pypi`    | [![requires-io]][3] [![snyk-python]][5]                                                           |
-| `Npm`     | [![david-dm-dev-package-json-dependencies-status]][4] [![snyk-npm]][6] [![greenkeeper-badge]][11] |
-
 ## Who, What and Why
 
 ### Who
@@ -69,32 +63,17 @@ docker run -d -p 8000:8000 \
 
 That's it, Have Fun! :smile:
 
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/TomerFi)
-
 **Contributors** (:thumbsup:), please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 <!-- Real Links -->
 [0]: https://github.com/TomerFi/slackin_docker
-[2]: https://circleci.com/gh/TomerFi/slackin_docker
-[3]: https://requires.io/github/TomerFi/slackin_docker/requirements
-[4]: https://david-dm.org/TomerFi/slackin_docker
-[5]: https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=requirements.txt
-[6]: https://snyk.io/test/github/TomerFi/slackin_docker?targetFile=package.json
 [7]: https://microbadger.com/images/tomerfi/slackin_docker
 [8]: https://github.com/TomerFi/slackin_docker/blob/dev/LICENSE
 [9]: https://hub.docker.com/r/tomerfi/slackin_docker
 [10]: https://hub.docker.com/r/tomerfi/switcher_webapi/builds
-[11]: https://greenkeeper.io/
 
 <!-- Badges Links -->
-[circleci]: https://circleci.com/gh/TomerFi/slackin_docker.svg?style=shield
-[david-dm-dev-package-json-dependencies-status]: https://david-dm.org/TomerFi/slackin_docker/status.svg
-[greenkeeper-badge]: https://badges.greenkeeper.io/TomerFi/slackin_docker.svg
-[requires-io]: https://requires.io/github/TomerFi/slackin_docker/requirements.svg
 [microbadger-docker-license]: https://images.microbadger.com/badges/license/tomerfi/slackin_docker.svg
 [microbadger-docker-version]: https://images.microbadger.com/badges/version/tomerfi/slackin_docker.svg
-[shields-io-docker-cloud-build-status]: https://img.shields.io/docker/cloud/build/tomerfi/slackin_docker.svg
 [shields-io-docker-pulls]: https://img.shields.io/docker/pulls/tomerfi/slackin_docker.svg
 [shields-io-maintenance]: https://img.shields.io/maintenance/no/2020
-[snyk-npm]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=package.json
-[snyk-python]: https://snyk.io//test/github/TomerFi/slackin_docker/badge.svg?targetFile=requirements.txt
